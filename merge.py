@@ -1,12 +1,13 @@
 from glob import glob
-selector = "ldv-rest-pns"
+selector = "ldv-rest-pnslazy"
 isTotal = True
 
-rst_base = "/home/qianshan/Documents/lazyExp-32_1/milu/" + selector + "/"
+rst_base = "/Users/yuqianshan/LabDrive/Seafile/My Library/LazyExpansion/lazyExp-32_1/milu/" \
+           + selector + "/"
 # rst_base = "/Users/yuqianshan/null/results-xml/z3/sum-diskperf/"
 paths = glob(rst_base + selector + "_*")
 sum_paths = []
-for i in range(0, 5):
+for i in range(0, 6):
     pattern = selector + "_" + i.__str__()
     for tar in paths:
         if tar.__contains__(pattern):
@@ -28,7 +29,7 @@ flag = False
 for i in range(3, len(sum_files[0])):
     flag = False
     sub = ['', 0, 0, 0, 0, 0, 0, 0,
-           '', 0, 0, 0, '', 0, 0]
+           '', 0, 0, 0, 0, 0, 0]
 
     for file in sum_files:
         if not flag: #第一行特殊处理
@@ -45,27 +46,26 @@ for i in range(3, len(sum_files[0])):
             flag = True
             # TODO 累加
             sub[0] = (ori[0].split('/'))[1]  # file name
-            sub[1] = int(ori[1])  # All Call
-            sub[2] = int(ori[2])  # Heap Size (MB)
-            # sub[3] = int(ori[3])  # LastVersion Hit
-            sub[4] = int(ori[4])  # PathLens
-            sub[5] = int(ori[5])  # SP
-            sub[6] = float(ori[6])  # cputimes (s)
-            sub[7] = int(ori[7])  # holes
-            sub[8] = 'false'
-            if ori[8].upper().__contains__('TRUE'):  # lazy status
-                sub[8] = 'true'
-            sub[9] = int(ori[9])  # memUsage
-            if ori[10] != '':
-                sub[10] = float(ori[10])  # ref times (s)
-            sub[11] = int(ori[11])  # refinements
-            sub[12] = 0
-            if ori[12].upper().__contains__('FALSE'):  # status
-                sub[12] += 1
-            elif ori[12].upper().__contains__('ERROR'):
-                sub[12] = -1
-            sub[13] = float(ori[13])  # total (s)
-            sub[14] = float(ori[14])  # walltimes (s)
+            # sub[1] = int(ori[1])  # All Call
+            # sub[2] = int(ori[2])  # Heap Size (MB)
+            # sub[4] = int(ori[4])  # PathLens
+            # sub[5] = int(ori[5])  # SP
+            # sub[6] = float(ori[6])  # cputimes (s)
+            # sub[7] = int(ori[7])  # holes
+            # sub[8] = 'false'
+            # if ori[8].upper().__contains__('TRUE'):  # lazy status
+            #     sub[8] = 'true'
+            # sub[9] = int(ori[9])  # memUsage
+            # if ori[10] != '':
+            #     sub[10] = float(ori[10])  # ref times (s)
+            # sub[11] = int(ori[11])  # refinements
+            # sub[12] = 0
+            # if ori[12].upper().__contains__('FALSE'):  # status
+            #     sub[12] += 1
+            # elif ori[12].upper().__contains__('ERROR'):
+            #     sub[12] = -1
+            # sub[13] = float(ori[13])  # total (s)
+            # sub[14] = float(ori[14])  # walltimes (s)
         else:
             ori = (bytes.decode(file[i])).split('\t')
             if not isTotal:
